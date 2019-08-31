@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ELabrary.Data;
 using ELabrary.Models;
 using ELabrary.Services;
+using ELibrary.My.Data;
+using ELibrary.My.Data.Models;
 
 namespace ELabrary
 {
@@ -26,11 +28,11 @@ namespace ELabrary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<ELibraryDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ELibraryDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
